@@ -1,0 +1,38 @@
+.posted-tweet {
+  /* background-color: red; */
+  width: 100%;
+  border: 5px solid black;
+}
+
+.posted-tweet:hover {
+  box-shadow: 10px 5px 5px black;
+}
+
+.footer-icons .fa-flag:hover, 
+.footer-icons .fa-retweet:hover,
+.footer-icons .fa-heart:hover {
+  color: rgb(182, 170, 11);
+}
+
+.tweet-header {
+  display: flex;
+  padding: 0.5em;
+  justify-content: space-between;
+
+}
+
+.tweet-body {
+  padding: 0.5em
+}
+
+.divider {
+  background-color: black;
+  height: 5px;
+  margin: 0 0.5em;
+}
+
+.tweet-footer {
+  display: flex;
+  padding: 0.5em;
+  justify-content: space-between;
+}
