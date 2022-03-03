@@ -7,6 +7,8 @@ $(document).ready(function () {
     $(".counter").text(charsRemain);
     if (charsRemain < 0) {
       $(".counter").css("color", "#ff0000");
+    } else if (charsRemain >= 0) {
+      $(".counter").css("color", "#c3c3c1");
     }
   });
 

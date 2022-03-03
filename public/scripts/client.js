@@ -73,7 +73,7 @@ const renderTweets = function (tweets) {
 };
 
 const loadTweets = function () {
-  $.ajax("http://localhost:8080/tweets", {
+  $.ajax({
     url: "/tweets",
     method: "GET",
     success: function (data) {
@@ -87,21 +87,32 @@ $(document).ready(function () {
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
     const data = $(this).serialize();
-    $.ajax({
-      url: "/tweets",
-      method: "POST",
-      data,
-      success: function (data) {
-        loadTweets();
-      }
-    });
-    // .done(function (data) {
-    //   alert(data);
-    //   loadTweets();
-    // });
-    // .fail(function (jqXHR, textStatus, errorThrown) {
-    //   alert("This is not correct.");
-    // });
+    const textArea = $("#tweet-text").val().length;
+    console.log("textArea", textArea);
+    if (textArea === 0) {
+      alert("No input provided, please enter an input.");
+    } else if (textArea > 140) {
+      alert("Input is greater than 140 characters, please modify input to fit 140 characters or less.");
+    } else {
+      $.ajax({
+        url: "/tweets",
+        method: "POST",
+        data,
+        success: function (data) {
+          loadTweets();
+          $("#tweet-form").trigger("reset");
+          // $("#tweet-form").reset();
+        }
+      });
+
+      // .done(function (data) {
+      //   alert(data);
+      //   loadTweets();
+      // });
+      // .fail(function (jqXHR, textStatus, errorThrown) {
+      //   alert("This is not correct.");
+      // });
+    }
   });
 
 });
