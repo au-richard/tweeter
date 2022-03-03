@@ -3,44 +3,31 @@
  * jQuery is already loaded
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
-
-// const tweetData = {
-//   "user": {
-//     "name": "Newton",
-//     "avatars": "https://i.imgur.com/73hZDYK.png",
-//     "handle": "@SirIsaac"
+// const data = [
+//   {
+//     "user": {
+//       "name": "Newton",
+//       "avatars": "https://i.imgur.com/73hZDYK.png"
+//       ,
+//       "handle": "@SirIsaac"
+//     },
+//     "content": {
+//       "text": "If I have seen further it is by standing on the shoulders of giants"
+//     },
+//     "created_at": 1461116232227
 //   },
-//   "content": {
-//     "text": "If I have seen further it is by standing on the shoulders of giants"
-//   },
-//   "created_at": 1461116232227
-// };
-
-const data = [
-  {
-    "user": {
-      "name": "Newton",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@SirIsaac"
-    },
-    "content": {
-      "text": "If I have seen further it is by standing on the shoulders of giants"
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Descartes",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@rd"
-    },
-    "content": {
-      "text": "Je pense , donc je suis"
-    },
-    "created_at": 1461113959088
-  }
-];
+//   {
+//     "user": {
+//       "name": "Descartes",
+//       "avatars": "https://i.imgur.com/nlhLi3I.png",
+//       "handle": "@rd"
+//     },
+//     "content": {
+//       "text": "Je pense , donc je suis"
+//     },
+//     "created_at": 1461113959088
+//   }
+// ];
 
 
 function createTweetElement(obj) {
@@ -72,7 +59,6 @@ function createTweetElement(obj) {
  </div>
 </article>
  `;
-
   return $tweet;
 }
 
@@ -84,11 +70,38 @@ const renderTweets = function (tweets) {
     // takes return value and appends it to the tweets container
     $('#tweets-container').prepend(tweetElement);
   }
+};
 
-
-
+const loadTweets = function () {
+  $.ajax("http://localhost:8080/tweets", {
+    url: "/tweets",
+    method: "GET",
+    success: function (data) {
+      renderTweets(data);
+    }
+  });
 };
 
 $(document).ready(function () {
-  renderTweets(data);
+  loadTweets();
+  $("#tweet-form").on("submit", function (event) {
+    event.preventDefault();
+    const data = $(this).serialize();
+    $.ajax({
+      url: "/tweets",
+      method: "POST",
+      data,
+      success: function (data) {
+        loadTweets();
+      }
+    });
+    // .done(function (data) {
+    //   alert(data);
+    //   loadTweets();
+    // });
+    // .fail(function (jqXHR, textStatus, errorThrown) {
+    //   alert("This is not correct.");
+    // });
+  });
+
 });
