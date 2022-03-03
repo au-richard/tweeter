@@ -42,3 +42,9 @@
   justify-content: space-between;
 }
 
+#error-text-zero {
+  border: 2px solid red;
+  /* border-style: solid;
+  border-color: red; */
+}
+

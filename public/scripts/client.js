@@ -29,28 +29,39 @@
 //   }
 // ];
 
+$(document).ready(function () {
+  $("#error-text-zero").hide();
+  $("#error-text-over").hide();
 
-function createTweetElement(obj) {
-  const name = obj.user.name;
-  const avatar = obj.user.avatars;
-  const handle = obj.user.handle;
-  const message = obj.content.text;
-  const timeAgo = obj.created_at;
-  const $tweet = `
+  //Checking escape for Cross Site Scripting
+  const escape = function (str) {
+    let div = document.createElement("div");
+    div.appendChild(document.createTextNode(str));
+    console.log("div", div.innerHTML);
+    return div.innerHTML;
+  };
+
+  function createTweetElement(obj) {
+    const name = obj.user.name;
+    const avatar = obj.user.avatars;
+    const handle = obj.user.handle;
+    const message = obj.content.text;
+    const timeAgo = obj.created_at;
+    const $tweet = `
  <article class="posted-tweet">
  <div class="tweet-header">
    <div id="image-name">
      <img src="${avatar}">
-     <p>${name}</p>
+     <p>${escape(name)}</p>
    </div>
-   <div>${handle}</div>
+   <div>${escape(handle)}</div>
  </div>
  <div class="tweet-body">
-   <p>${message}</p>
+   <p>${escape(message)}</p>
  </div>
  <div class="divider"></div>
  <div class="tweet-footer">
-   <div>${timeago.format(timeAgo)}</div>
+   <div>Posted ${timeago.format(timeAgo)}</div>
    <div class="footer-icons">
      <i class="fa-solid fa-flag"></i>
      <i class="fa-solid fa-retweet"></i>
@@ -59,30 +70,29 @@ function createTweetElement(obj) {
  </div>
 </article>
  `;
-  return $tweet;
-}
-
-const renderTweets = function (tweets) {
-  // loops through tweets
-  for (const tweet of tweets) {
-    // calls createTweetElement for each tweet
-    const tweetElement = createTweetElement(tweet);
-    // takes return value and appends it to the tweets container
-    $('#tweets-container').prepend(tweetElement);
+    return $tweet;
   }
-};
 
-const loadTweets = function () {
-  $.ajax({
-    url: "/tweets",
-    method: "GET",
-    success: function (data) {
-      renderTweets(data);
+  const renderTweets = function (tweets) {
+    // loops through tweets
+    for (const tweet of tweets) {
+      // calls createTweetElement for each tweet
+      const tweetElement = createTweetElement(tweet);
+      // takes return value and appends it to the tweets container
+      $('#tweets-container').prepend(tweetElement);
     }
-  });
-};
+  };
 
-$(document).ready(function () {
+  const loadTweets = function () {
+    $.ajax({
+      url: "/tweets",
+      method: "GET",
+      success: function (data) {
+        renderTweets(data);
+      }
+    });
+  };
+
   loadTweets();
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
@@ -90,10 +100,12 @@ $(document).ready(function () {
     const textArea = $("#tweet-text").val().length;
     console.log("textArea", textArea);
     if (textArea === 0) {
-      alert("No input provided, please enter an input.");
+      $("#error-text-zero").slideDown();
     } else if (textArea > 140) {
-      alert("Input is greater than 140 characters, please modify input to fit 140 characters or less.");
+      $("#error-text-over").slideDown();
     } else {
+      $("#error-text-zero").slideUp();
+      $("#error-text-over").slideUp();
       $.ajax({
         url: "/tweets",
         method: "POST",
@@ -101,18 +113,8 @@ $(document).ready(function () {
         success: function (data) {
           loadTweets();
           $("#tweet-form").trigger("reset");
-          // $("#tweet-form").reset();
         }
       });
-
-      // .done(function (data) {
-      //   alert(data);
-      //   loadTweets();
-      // });
-      // .fail(function (jqXHR, textStatus, errorThrown) {
-      //   alert("This is not correct.");
-      // });
     }
   });
-
 });
