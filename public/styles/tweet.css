@@ -27,7 +27,9 @@
 }
 
 .tweet-body {
-  padding: 0.5em
+  padding: 0.5em;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .divider {
@@ -42,9 +44,10 @@
   justify-content: space-between;
 }
 
-#error-text-zero {
-  border: 2px solid red;
-  /* border-style: solid;
-  border-color: red; */
+#error-text-zero,  
+#error-text-over {
+  background-color: rgb(80, 80, 80);
+  border: 3px solid maroon;
+  display: flex;
+  justify-content: center;
 }
-

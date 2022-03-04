@@ -3,12 +3,14 @@
 
 <head>
   <!-- Meta Information -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tweeter - Home Page</title>
 
   <!-- External CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
     type="text/css" />
-
+  <!-- Font Style CSS for Bungee and Source Sans Pro -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Source+Sans+Pro:wght@600&display=swap"
@@ -33,82 +35,56 @@
   <!-- App JS -->
   <script type="text/javascript" src="/scripts/client.js"></script>
   <script type="text/javascript" src="/scripts/composer-char-counter.js"></script>
-
-
 </head>
 
 
 <body>
-
+  <a name="back-to-top"></a>
   <!-- Top nav bar (fixed) -->
   <nav>
     <span id="logo">tweeter</span>
     <div class="nav-right">
       <span><strong>Write</strong> a new tweet</span>
-      <i class="fa-solid fa-angles-down"></i>
+      <a href="#back-to-top">
+        <i class="fa-solid fa-angles-down"></i>
+      </a>
     </div>
   </nav>
-  <header class="profileAndName">
-    <div>
-      <img src="/images/profile-hex.png">
-    </div>
-    <br>
-    <div>
-      <h2>Richard Au</h2>
-    </div>
-  </header>
-
-  <!-- Page-specific (main) content here -->
-  <main class="container">
-    <section class="new-tweet">
-      <div id="error-text-zero">
-        <h5>No input provided, please enter an input.</h5>
+  <div class="parent-container">
+    <header>
+      <div>
+        <img src="/images/profile-hex.png">
       </div>
-      <div id="error-text-over">
-        <h5>Input is greater than 140 characters, please modify input to fit 140 characters or less.
-        </h5>
+      <br>
+      <div>
+        <h2>Richard Au</h2>
       </div>
-      <!-- 
-       -->
-      <h2>Compose Tweet</h2>
-      <form id="tweet-form" method="POST" action="/tweets">
-        <label id="question" for="tweet-text">What are you humming about?</label>
-        <textarea name="text" id="tweet-text"></textarea>
-        <div class="container-footer">
-          <!-- <div> -->
-          <button id="submit-tweet" type="submit">Tweet</button>
-          <!-- </div> -->
-          <!-- <div> -->
-          <output name="counter" class="counter" for="tweet-text">140</output>
-          <!-- </div> -->
-        </div>
-      </form>
-    </section>
+    </header>
 
-    <section id="tweets-container">
-      <!-- <article class="posted-tweet">
-        <div class="tweet-header">
-          <div id="image-name">
-            <img src="images/avatar-image.png">
-            <p>Newton Montgomery</p>
+    <!-- Page-specific (main) content here -->
+    <main class="container">
+      <section class="new-tweet">
+        <div id="error-text-zero">
+          <h5>No input provided, please enter an input.</h5>
+        </div>
+        <div id="error-text-over">
+          <h5>Input is greater than 140 characters, please modify input to fit 140 characters or less.
+          </h5>
+        </div>
+        <h2>Compose Tweet</h2>
+        <form id="tweet-form" method="POST" action="/tweets">
+          <label id="question" for="tweet-text">What are you humming about?</label>
+          <textarea name="text" id="tweet-text"></textarea>
+          <div class="container-footer">
+            <button id="submit-tweet" type="submit">Tweet</button>
+            <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
-          <div>@NewtonMont</div>
-        </div>
-        <div class="tweet-body">
-          <p>Hello World</p>
-        </div>
-        <div class="divider"></div>
-        <div class="tweet-footer">
-          <div>5 days ago</div>
-          <div class="footer-icons">
-            <i class="fa-solid fa-flag"></i>
-            <i class="fa-solid fa-retweet"></i>
-            <i class="fa-solid fa-heart"></i>
-          </div>
-        </div>
-      </article> -->
-    </section>
-  </main>
+        </form>
+      </section>
+
+      <section id="tweets-container"></section>
+    </main>
+  </div>
 </body>
 
 

@@ -6,13 +6,12 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */;
-
+  justify-content: flex-start;
 }
 
-/* div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-} */
+/* Smartphones: maximum width of 960px */
+@media only screen and (max-width: 960px) {
+  .header {
+    flex: 1 1 100%;
+  }
+}

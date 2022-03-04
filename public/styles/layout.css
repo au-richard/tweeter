@@ -3,12 +3,13 @@
  * https://css-tricks.com/international-box-sizing-awareness-day/
  * Do not modify these two selectors, please
  */
-html {
+
+* {
   box-sizing: border-box;
 }
-*, *:before, *:after {
+/* *, *:before, *:after {
   box-sizing: inherit;
-}
+} */
 
 /*
  * Global layout stuff
@@ -26,7 +27,6 @@ body {
   /* display:flex; */
   /* flex-direction: column;
   align-items: center; */
-  padding: 0 5em;
   background-color: #007a27;
   margin: auto;
 }
@@ -58,6 +58,32 @@ body {
   align-content: flex-end;
 }
 
-/*
- * Additional CSS can be defined below or in other CSS files, as per instructions
- */
+.parent-container {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Smartphones: max width of 960px */
+@media only screen and (max-width: 960px) {
+  .parent-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .container {
+    flex: 1 1 100%;
+    padding: 0 0.5em;
+  }
+}
+
+/* Laptops / Desktops: minimum width of 960px */
+@media only screen and (min-width: 960px) {
+  .parent-container {
+    display: flex;
+    flex-direction: row;
+  }
+.container {
+  padding: 0 5em;
+}
+  
+}
