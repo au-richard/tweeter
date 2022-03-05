@@ -7,13 +7,6 @@
 * {
   box-sizing: border-box;
 }
-/* *, *:before, *:after {
-  box-sizing: inherit;
-} */
-
-/*
- * Global layout stuff
- */
 
 body {
   color: #c3c3c1;
@@ -22,19 +15,12 @@ body {
   font-size: 24px;
 }
 
+/* Entire Compose Tweet Container */
 .container {
   width: 100%;
-  /* display:flex; */
-  /* flex-direction: column;
-  align-items: center; */
   background-color: #007a27;
   margin: auto;
 }
-
-/* .new-tweet {
-  display: flex;
-  justify-content: left;
-} */
 
 /* Input Textbox */
 #tweet-text {
@@ -47,17 +33,14 @@ body {
   outline: none;
 }
 
+/* Tweet Button and Character Counter  */
 .container-footer {
   display: flex;
   justify-content: space-between;
   margin-bottom: 1em;
 }
 
-#question {
-  display:flex;
-  align-content: flex-end;
-}
-
+/* Desktop Mode: Separating Header and Tweets Side By Side  */
 .parent-container {
   display: flex;
   flex-direction: column;
@@ -73,6 +56,12 @@ body {
   .container {
     flex: 1 1 100%;
     padding: 0 0.5em;
+  }
+  .nav-right {
+    font-size: 20px;
+  }
+  body {
+    size-adjust: 75%;
   }
 }
 

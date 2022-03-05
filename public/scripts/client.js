@@ -16,6 +16,7 @@ $(document).ready(function () {
     return div.innerHTML;
   };
 
+  //New Tweet Template 
   function createTweetElement(obj) {
     const name = obj.user.name;
     const avatar = obj.user.avatars;
@@ -48,6 +49,7 @@ $(document).ready(function () {
     return $tweet;
   }
 
+  // Prepending Newest Tweet As Last One On Top
   const renderTweets = function (tweets) {
     for (const tweet of tweets) {
       const tweetElement = createTweetElement(tweet);
@@ -55,6 +57,7 @@ $(document).ready(function () {
     }
   };
 
+  //AJAX Get Request To Load Tweet When Ready 
   const loadTweets = function () {
     $.ajax({
       url: "/tweets",
@@ -64,14 +67,14 @@ $(document).ready(function () {
       }
     });
   };
-
+  // Calling Default Posted Tweets On Server Start
   loadTweets();
-
+  // Submitting Tweet
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
     const data = $(this).serialize();
     const textArea = $("#tweet-text").val().length;
-    //Checking Tweet Input Before Submitting
+    //Checking Tweet Conditions Input Before Submitting
     if (textArea === 0) {
       $("#error-text-over").hide();
       $("#error-text-zero").slideDown();

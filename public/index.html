@@ -39,17 +39,20 @@
 
 
 <body>
+  <!-- Linked Area To Bring User Back To Top -->
   <a name="back-to-top"></a>
   <!-- Top nav bar (fixed) -->
   <nav>
     <span id="logo">tweeter</span>
     <div class="nav-right">
       <span><strong>Write</strong> a new tweet</span>
+      <!-- Down Arrow Brings You Back To Top -->
       <a href="#back-to-top">
         <i class="fa-solid fa-angles-down"></i>
       </a>
     </div>
   </nav>
+  <!-- Parent Container to hold Header and Main for Desktop Layout -->
   <div class="parent-container">
     <header>
       <div>
@@ -64,16 +67,19 @@
     <!-- Page-specific (main) content here -->
     <main class="container">
       <section class="new-tweet">
+        <!-- No Input Text Error -->
         <div id="error-text-zero">
           <h5>No input provided, please enter an input.</h5>
         </div>
+        <!-- Over Character Limit Text Error -->
         <div id="error-text-over">
           <h5>Input is greater than 140 characters, please modify input to fit 140 characters or less.
           </h5>
         </div>
+        <!-- Create New Tweet Section -->
         <h2>Compose Tweet</h2>
         <form id="tweet-form" method="POST" action="/tweets">
-          <label id="question" for="tweet-text">What are you humming about?</label>
+          <label for="tweet-text">What are you humming about?</label>
           <textarea name="text" id="tweet-text"></textarea>
           <div class="container-footer">
             <button id="submit-tweet" type="submit">Tweet</button>
@@ -81,12 +87,10 @@
           </div>
         </form>
       </section>
-
+      <!-- Posted Tweets -->
       <section id="tweets-container"></section>
     </main>
   </div>
 </body>
-
-
 
 </html>

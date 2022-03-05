@@ -13,13 +13,14 @@ nav {
   top: 0;
 }
 
+/* Tweeter Logo */
 #logo {
   font-family: 'Bungee', cursive;
 }
 
+/* Write A New Tweet and Down Arrow */
 .nav-right {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-

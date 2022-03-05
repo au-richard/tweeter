@@ -1,5 +1,8 @@
+/* This CSS File Is For All Posted Tweets */
+
+/* Container for Entire Posted Tweet */
 .posted-tweet {
-  /* background-color: red; */
+  background-color: royalblue;
   width: 100%;
   border: 5px solid black;
 }
@@ -14,6 +17,7 @@
   color: rgb(182, 170, 11);
 }
 
+/* Adjusting Avatar, Name, and Handle in Header */
 .tweet-header {
   display: flex;
   padding: 0.5em;
@@ -21,6 +25,7 @@
 
 }
 
+/* Adjusting Avatar and Name To Be Same Row */
 #image-name {
   display: flex;
   flex-direction: row;
@@ -32,18 +37,21 @@
   flex-wrap: wrap;
 }
 
+/* Black Divider Line Separating Posted Tweet Footer and Body */
 .divider {
   background-color: black;
   height: 5px;
   margin: 0 0.5em;
 }
 
+/* Adjusting Created Date and Icon Placement in Footer */
 .tweet-footer {
   display: flex;
   padding: 0.5em;
   justify-content: space-between;
 }
 
+/* Banner For Error Text Input */
 #error-text-zero,  
 #error-text-over {
   background-color: rgb(80, 80, 80);
