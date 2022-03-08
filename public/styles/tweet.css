@@ -5,6 +5,7 @@
   background-color: royalblue;
   width: 100%;
   border: 5px solid black;
+  margin-bottom: 1.5em;
 }
 
 .posted-tweet:hover {

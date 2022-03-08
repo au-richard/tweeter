@@ -12,7 +12,6 @@ $(document).ready(function () {
   const escape = function (str) {
     let div = document.createElement("div");
     div.appendChild(document.createTextNode(str));
-    console.log("div", div.innerHTML);
     return div.innerHTML;
   };
 
@@ -51,10 +50,16 @@ $(document).ready(function () {
 
   // Prepending Newest Tweet As Last One On Top
   const renderTweets = function (tweets) {
+    let timeStamp = {};
     for (const tweet of tweets) {
+      if (tweet.created_at in timeStamp) {
+        timeStamp[tweet.created_at] += 1;
+      } else {
+        timeStamp[tweet.created_at] = 0;
+      }
       const tweetElement = createTweetElement(tweet);
       $('#tweets-container').prepend(tweetElement);
-    }
+    };
   };
 
   //AJAX Get Request To Load Tweet When Ready 
@@ -68,11 +73,11 @@ $(document).ready(function () {
     });
   };
   // Calling Default Posted Tweets On Server Start
-  // loadTweets();
+
   // Submitting Tweet
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
-    const data = $(this).serialize();
+    const req = $(this).serialize();
     const textArea = $("#tweet-text").val().length;
     //Checking Tweet Conditions Input Before Submitting
     if (textArea === 0) {
@@ -87,8 +92,10 @@ $(document).ready(function () {
       $.ajax({
         url: "/tweets",
         method: "POST",
-        data,
-        success: function (data) {
+        data: req,
+        success: function (res) {
+          // Clearing tweet container before posting new tweet
+          document.getElementById("tweets-container").innerHTML = "";
           loadTweets();
           $(".counter").text(140);
           $("#tweet-form").trigger("reset");
@@ -96,4 +103,5 @@ $(document).ready(function () {
       });
     }
   });
+  loadTweets();
 });
