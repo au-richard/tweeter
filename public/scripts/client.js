@@ -68,7 +68,7 @@ $(document).ready(function () {
     });
   };
   // Calling Default Posted Tweets On Server Start
-  loadTweets();
+  // loadTweets();
   // Submitting Tweet
   $("#tweet-form").on("submit", function (event) {
     event.preventDefault();
