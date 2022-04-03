@@ -1,6 +1,6 @@
 # Tweeter Project
 
-Tweeter is a simple, single-page Twitter clone. This is a Front-End Focused on implementing HTML, CSS, JS, and jQuery. This App utilizes AJAX to allow user post tweets without refreshing the page.
+Tweeter is a simple, single-page Twitter clone. This is a Front-End Focused app on implementing HTML, CSS, JS, and jQuery. This App utilizes AJAX to allow user post tweets without refreshing the page.
 
 ## Final Product
 
